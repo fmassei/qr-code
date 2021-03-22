@@ -16,9 +16,9 @@ final class Label
     public int $fontSizePx = 28;
     public int $alignment = self::LABEL_TEXT_ALIGN_CENTER;
     /** @var int[] $margin top, right, bottom, left */
-    public array $margin = [0,10,10,10];    //TODO
+    public array $margin = [10,10,10,10];
     public string $textColor = "#000000";
-    public string $backgroundColor = "#FFFFFF"; //TODO
+    public string $backgroundColor = "#FFFFFF";
 
     public function __construct(string $text) {
         $this->text = $text;

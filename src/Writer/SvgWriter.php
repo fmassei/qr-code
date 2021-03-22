@@ -103,26 +103,37 @@ final class SvgWriter implements IWriter
 
         $width = $matrix->outerSize;
         $origHeight = $matrix->outerSize;
-        $newHeight = intval($origHeight+$label->fontSizePx*1.3);
+        $newHeight = intval($origHeight
+            +   $label->fontSizePx*1.3
+            +   $label->margin[0] + $label->margin[2]);
 
         $dom->documentElement->setAttribute('height', $newHeight."px");
         $dom->documentElement->setAttribute('viewBox', "0 0 $width $newHeight");
 
-        $y = $origHeight + $label->fontSizePx;
+        $y = $origHeight + $label->fontSizePx+$label->margin[0];
         switch ($label->alignment) {
             case Label::LABEL_TEXT_ALIGN_LEFT:
-                $x = 0;
+                $x = $label->margin[3];
                 $anchor = 'start';
                 break;
             case Label::LABEL_TEXT_ALIGNM_RIGHT:
-                $x = $width;
+                $x = $width-$label->margin[1];
                 $anchor = 'end';
                 break;
             case Label::LABEL_TEXT_ALIGN_CENTER:
             default:
-                $x = $width/2;
+                $x = $width/2 + $label->margin[3] - $label->margin[1];
                 $anchor = 'middle';
         }
+        $gNode = $dom->createElement('g');
+
+        $textBg = $dom->createElement('rect');
+        $textBg->setAttribute('x', '0');
+        $textBg->setAttribute('y', strval($origHeight));
+        $textBg->setAttribute('width', strval($width));
+        $textBg->setAttribute('height', strval($newHeight-$origHeight));
+        $textBg->setAttribute('fill', $label->backgroundColor);
+        $gNode->appendChild($textBg);
 
         $textDef = $dom->createElement('text', $label->text);
         $textDef->setAttribute('x', strval($x));
@@ -131,7 +142,8 @@ final class SvgWriter implements IWriter
         $textDef->setAttribute('font-family', $label->fontFamily);
         $textDef->setAttribute('font-size', $label->fontSizePx."px");
         $textDef->setAttribute('fill', $label->textColor);
+        $gNode->appendChild($textDef);
 
-        return $textDef;
+        return $gNode;
     }
 }

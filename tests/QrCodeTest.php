@@ -36,13 +36,11 @@ final class QrCodeTest extends TestCase
         $qrCode = new QrCode("test");
 
         // Create generic logo
-        $qrCode->logo = Logo::fromPath(__DIR__.'/assets/symfony.png');
+        $qrCode->logo = Logo::fromPath(__DIR__.'/assets/logo.png');
 
         // Create generic label
-        /*$label = Label::create('Label')
-            ->setTextColor("#FF0000")
-            ->setBackgroundColor("#000000");
-*/
+        $qrCode->label = new Label('Label');
+
         $result = $writer->write($qrCode);
 
         $this->assertInstanceOf($resultClass, $result);
@@ -133,9 +131,12 @@ final class QrCodeTest extends TestCase
         $writer = new PngWriter();
         $qrCode = new QrCode('QR Code');
         $qrCode->errorCorrectionLevel = QrCode::ERROR_CORRECTION_LEVEL_MEDIUM;
-        $qrCode->logo = Logo::fromPath(__DIR__.'/assets/symfony.png');
+        $qrCode->logo = Logo::fromPath(__DIR__.'/assets/logo.png');
         $qrCode->label = new Label("MyLabel");
+        $qrCode->label->backgroundColor = '#f0f';
+        $qrCode->label->textColor = '#0ff';
         $qrCode->label->alignment = Label::LABEL_TEXT_ALIGNM_RIGHT;
+        $qrCode->label->margin = [50,50,50,50];
 
         file_put_contents($path, $writer->write($qrCode)->getString());
 
@@ -153,12 +154,13 @@ final class QrCodeTest extends TestCase
         $writer = new SvgWriter();
         $qrCode = new QrCode('QR Code');
         $qrCode->label = new Label("MyLabel");
+        $qrCode->logo = Logo::fromPath(__DIR__.'/assets/logo.png');
         $qrCode->frame = SVGFrame::fromFile(__DIR__."/assets/frame_test.svg");
 
         file_put_contents($path, $writer->write($qrCode)->getString());
 
         $this->assertTrue((new Imagick())->readImage($path));
 
-        unlink($path);
+        //unlink($path);
     }
 }

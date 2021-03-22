@@ -75,8 +75,20 @@ Everyone expects it, I guess.
 echo (new PngWriter())->write(new QrCode($myData))->getString();
 ```
 
-## Frames
+## SVG frames
+A frame is a template for outputting code, logo and label.
+The library recognizes any element inside the SVG frame with id equals to:
 
+- `SVGFrame::IDQrCode` (default "QrCode"): this element will be subsituted with 
+    the QR code matrix
+- `SVGFrame::IDLogo` (default "Logo"): this element will be substituted with the
+    passed Logo image (if any). No other variable of the Logo object is used.
+- `SVGFrame::IDLabel` (default "Label"): the *value of this node* will be
+    substituted with the label text. No other variable of the Label object is used.
+
+An example of the SVG structure and usage is available in the tests.
+
+![SVGFrame example](tests/assets/frame%20example.png)
 
 ## License
 
