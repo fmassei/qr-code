@@ -1,7 +1,7 @@
 # QR Code
 
 [![Latest Stable Version](http://img.shields.io/packagist/v/fmassei/qr-code.svg)](https://packagist.org/packages/fmassei/qr-code)
-[![Build Status](https://github.com/fmassei/qr-code/workflows/CI/badge.svg)](https://github.com/fmassei/qr-code/actions)
+<!--[![Build Status](https://github.com/fmassei/qr-code/workflows/CI/badge.svg)](https://github.com/fmassei/qr-code/actions)-->
 [![Total Downloads](http://img.shields.io/packagist/dt/fmassei/qr-code.svg)](https://packagist.org/packages/fmassei/qr-code)
 [![Monthly Downloads](http://img.shields.io/packagist/dm/fmassei/qr-code.svg)](https://packagist.org/packages/fmassei/qr-code)
 [![License](http://img.shields.io/packagist/l/fmassei/qr-code.svg)](https://packagist.org/packages/fmassei/qr-code)
