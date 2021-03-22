@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="frame_test.svg"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 100 120"
+   height="120mm"
+   width="100mm">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="0"
+     inkscape:window-y="25"
+     inkscape:window-x="0"
+     inkscape:window-height="943"
+     inkscape:window-width="1252"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="svg8"
+     inkscape:document-units="mm"
+     inkscape:cy="397.43198"
+     inkscape:cx="161.22614"
+     inkscape:zoom="0.79837732"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     ry="5"
+     rx="5"
+     inkscape:label="Frame"
+     y="0"
+     x="0"
+     height="120"
+     width="100"
+     id="rect10"
+     style="fill:#000000;stroke:none;stroke-width:2.646;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:200;paint-order:markers stroke fill" />
+  <rect
+     inkscape:label="QrCode"
+     y="10"
+     x="10"
+     height="80"
+     width="80"
+     id="QrCode"
+     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.646;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:200;paint-order:markers stroke fill" />
+  <text
+     inkscape:label="Label"
+     id="LabelText"
+     y="107.70544"
+     x="50.193787"
+     style="font-size:10.5833px;line-height:0;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.264583"
+     xml:space="preserve"><tspan
+       id="Label"
+       style="text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.264583"
+       y="107.70544"
+       x="50.193787"
+       sodipodi:role="line">aaaa</tspan></text>
+</svg>

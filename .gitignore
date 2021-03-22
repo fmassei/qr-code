@@ -1,0 +1,7 @@
+/composer.phar
+/composer.lock
+/tests/coverage/
+/vendor/
+.DS_Store
+.idea/
+.phpunit*
