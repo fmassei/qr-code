@@ -86,6 +86,18 @@ final class SvgWriter implements IWriter
         $x = intval($matrix->outerSize) / 2 - $logoSize / 2;
         $y = intval($matrix->outerSize) / 2 - $logoSize / 2;
 
+        $gDef = $dom->createElement('g');
+
+        if ($qrCode->logo->backgroundColor!==null) {
+            $bgDef = $dom->createElement('rect');
+            $bgDef->setAttribute('x', strval($x));
+            $bgDef->setAttribute('y', strval($y));
+            $bgDef->setAttribute('width', strval($logoSize));
+            $bgDef->setAttribute('height', strval($logoSize));
+            $bgDef->setAttribute('fill', $qrCode->logo->backgroundColor);
+            $gDef->appendChild($bgDef);
+        }
+
         $imageDef = $dom->createElement('image');
         $imageDef->setAttribute('x', strval($x));
         $imageDef->setAttribute('y', strval($y));
@@ -93,8 +105,9 @@ final class SvgWriter implements IWriter
         $imageDef->setAttribute('height', strval($logoSize));
         $imageDef->setAttribute('preserveAspectRatio', 'none');
         $imageDef->setAttribute('href', $logo->getImageDataUri());
+        $gDef->appendChild($imageDef);
 
-        return $imageDef;
+        return $gDef;
     }
 
     private function createLabelNode(QrCode $qrCode, Matrix $matrix, DOMDocument $dom) : DOMElement

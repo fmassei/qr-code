@@ -161,6 +161,6 @@ final class QrCodeTest extends TestCase
 
         $this->assertTrue((new Imagick())->readImage($path));
 
-        //unlink($path);
+        unlink($path);
     }
 }

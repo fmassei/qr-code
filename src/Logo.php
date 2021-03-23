@@ -9,6 +9,7 @@ class Logo
 {
     public string $imageData;
     public string $mimeType;
+    public string|null $backgroundColor = null;
     public float $percentSize = 0.2;
 
     public function __construct(string $imageData, string $mimeType)
