@@ -69,6 +69,8 @@ $result->saveToFile(__DIR__.'/qrcode.png');
 $dataUri = $result->getDataUri();
 ```
 
+![QR code example](tests/assets/code%20example.png)
+
 ## One liner
 Everyone expects it, I guess.
 ```php
