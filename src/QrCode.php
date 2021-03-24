@@ -28,7 +28,15 @@ class QrCode
     public Label|null $label = null;
     public SVGFrame|null $frame = null;
 
+    private Matrix|null $matrix = null;
+
     public function __construct(string $data) {
         $this->data = $data;
+    }
+
+    public function getMatrix() : Matrix {
+        if ($this->matrix===null)
+            $this->matrix = MatrixFactory::create($this);
+        return $this->matrix;
     }
 }

@@ -24,7 +24,9 @@ class SVGFrame
         return new self($dom);
     }
 
-    public function getWithReplacedNodes(DOMElement $qrCodeElement, Label|null $label, Logo|null $logo) : DOMDocument {
+    public function getWithReplacedNodes(DOMElement $qrCodeElement, QrCode $qrCode) : DOMDocument {
+        $label = $qrCode->label;
+        $logo = $qrCode->logo;
         $xpath = new DOMXPath($this->dom);
         if (($elements = $xpath->query("//*[@id]"))===null)
             return $this->dom;
@@ -42,12 +44,12 @@ class SVGFrame
                     $svgNode->setAttribute('y', $y);
                     $svgNode->setAttribute('width', $width);
                     $svgNode->setAttribute('height', $height);
-                    $gNode = $this->dom->createElement('g');
-                    $gNode->appendChild($svgNode);
 
-                    $element->parentNode->replaceChild($gNode, $element);
+                    $element->parentNode->replaceChild($svgNode, $element);
                     break;
                 case $this->IDLogo:
+                    if ($logo===null)
+                        break;
                     $x = $element->getAttribute('x');
                     $y = $element->getAttribute('y');
                     $width = $element->getAttribute('width');

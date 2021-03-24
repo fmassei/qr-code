@@ -7,7 +7,6 @@ use DOMDocument;
 use DOMElement;
 use fmassei\QrCode\Label;
 use fmassei\QrCode\Matrix;
-use fmassei\QrCode\MatrixFactory;
 use fmassei\QrCode\QrCode;
 use fmassei\QrCode\Writer\Result\SvgResult;
 
@@ -18,13 +17,13 @@ final class SvgWriter implements IWriter
 
     public function write(QrCode $qrCode, array $options = []): SvgResult
     {
-        $matrix = MatrixFactory::create($qrCode);
+        $matrix = $qrCode->getMatrix();
 
         $dom = new DOMDocument();
         $matrixNode = $this->createMatrixNode($qrCode, $matrix, $dom);
 
         if ($qrCode->frame!==null) {
-            $dom = $qrCode->frame->getWithReplacedNodes($matrixNode, $qrCode->label, $qrCode->logo);
+            $dom = $qrCode->frame->getWithReplacedNodes($matrixNode, $qrCode);
         } else {
             $dom->appendChild($matrixNode);
             if ($qrCode->logo!=null)
@@ -45,15 +44,6 @@ final class SvgWriter implements IWriter
         $root->setAttribute('height', $matrix->outerSize.'px');
         $root->setAttribute('viewBox', '0 0 '.$matrix->outerSize.' '.$matrix->outerSize);
 
-        $defs = $dom->createElement('defs');
-        $blockDef = $dom->createElement('rect');
-        $blockDef->setAttribute('id', self::DEF_BLOCK_ID);
-        $blockDef->setAttribute('width', strval($matrix->blockSize));
-        $blockDef->setAttribute('height', strval($matrix->blockSize));
-        $blockDef->setAttribute('fill', $qrCode->foregroundColor);
-        $defs->appendChild($blockDef);
-        $root->appendChild($defs);
-
         $background = $dom->createElement('rect');
         $background->setAttribute('id', self::BACKGROUND_ID);
         $background->setAttribute('x', '0');
@@ -67,10 +57,12 @@ final class SvgWriter implements IWriter
         for ($row=0; $row<$blockCount; ++$row) {
             for ($col=0; $col<$blockCount; ++$col) {
                 if ($matrix->blockValues[$row][$col]===1) {
-                    $block = $dom->createElement('use');
+                    $block = $dom->createElement('rect');
                     $block->setAttribute('x', strval($matrix->marginLeft + $matrix->blockSize*$col));
                     $block->setAttribute('y', strval($matrix->marginLeft + $matrix->blockSize*$row));
-                    $block->setAttribute('href', '#'.self::DEF_BLOCK_ID);
+                    $block->setAttribute('width', strval($matrix->blockSize));
+                    $block->setAttribute('height', strval($matrix->blockSize));
+                    $block->setAttribute('fill', $qrCode->foregroundColor);
                     $root->appendChild($block);
                 }
             }
