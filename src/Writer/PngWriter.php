@@ -19,14 +19,14 @@ class PngWriter implements IWriter
     public function write(QrCode $qrCode, array $options = []): PngResult
     {
         if (!isset($options[self::READ_BLOB_WORKAROUND]))
-            $options[self::READ_BLOB_WORKAROUND] = $options[self::READ_BLOB_WORKAROUND_DEFAULT];
+            $options[self::READ_BLOB_WORKAROUND] = self::READ_BLOB_WORKAROUND_DEFAULT;
         $svgWriter = new SvgWriter();
         $svg = ($svgWriter->write($qrCode, $options))->getString();
         $size = $qrCode->getMatrix()->outerSize;
         $im = new Imagick();
         $im->setBackgroundColor(new ImagickPixel('transparent'));
-        $im->setResolution(2000,2000);
-        if (!$options[self::READ_BLOB_WORKAROUND]) {
+        $im->setResolution(300,300);
+        if ($options[self::READ_BLOB_WORKAROUND]) {
             $tmpName = tempnam(sys_get_temp_dir(), 'FOO');
             file_put_contents($tmpName, $svg);
             $im->readImage($tmpName);
